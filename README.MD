@@ -1,5 +1,6 @@
 # Go OpenMCIM
 为各平台的 Mod 的缓存加速，基于 [Go OpenBmclAPI](https://github.com/LiterMC/go-openbmclapi) 修改的节点客户端
+更多关于 MCIM 的信息，请到[此处](https://github.com/mcmod-info-mirror/mcim)了解
 > [!TIP]
 > 非官方, 不保证时效性
 *如果本项目有用, 就给个 star ⭐️ 吧 :)*
