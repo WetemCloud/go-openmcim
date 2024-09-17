@@ -1,12 +1,12 @@
 package zh
 
 var areaCN = map[string]string{
-	"program.starting":     "正在启动 Go-OpenBmclApi v%s (%s)",
+	"program.starting":     "正在启动 Go-OpenMCIM v%s (%s)",
 	"error.set.cluster.id": "启动前请在 config.yaml 内设置 cluster-id 和 cluster-secret !",
 	"error.init.failed":    "无法初始化节点: %v",
 
 	"program.exited":                          "节点正在退出, 代码 %d",
-	"error.exit.please.read.faq":              "请在提交问题前阅读 https://github.com/LiterMC/go-openbmclapi?tab=readme-ov-file#faq",
+	"error.exit.please.read.faq":              "请在提交问题前阅读 https://github.com/WetemCloud/go-openmcim?tab=readme-ov-file#faq",
 	"warn.exit.detected.windows.open.browser": "检测到您是新手 Windows 用户. 我们正在帮助您打开浏览器 ...",
 
 	"info.filelist.fetching":      "获取文件列表中",
@@ -93,8 +93,8 @@ var areaCN = map[string]string{
 	"error.tunnel.failed":                 "打洞失败: %v",
 	"error.tunnel.command.prepare.failed": "打洞指令准备失败: %v",
 
-	"info.update.checking":      "正在检测 Go-OpenBmclAPI 最新发布 ...",
+	"info.update.checking":      "正在检测 Go-OpenMCIM 最新发布 ...",
 	"error.update.check.failed": "更新检测失败: %v",
-	"info.update.detected":      "已检测到新版 go-openbmclapi: tag=%s, current=%s",
+	"info.update.detected":      "已检测到新版 Go-OpenMCIM: tag=%s, current=%s",
 	"info.update.changelog":     "更新日志 %s -> %s:\n%s",
 }

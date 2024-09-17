@@ -45,9 +45,9 @@ dashboard:
   enable: true
   username: ""
   password: ""
-  pwa-name: GoOpenBmclApi Dashboard
-  pwa-short_name: GOBA Dash
-  pwa-description: Go-Openbmclapi Internal Dashboard
+  pwa-name: GoOpenMCIM Dashboard
+  pwa-short_name: GOMCIM Dash
+  pwa-description: Go-OpenMCIM Internal Dashboard
   notification-subject: mailto:user@example.com
 github-api:
   update-check-interval: 1h0m0s

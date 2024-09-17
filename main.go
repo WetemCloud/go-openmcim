@@ -76,7 +76,7 @@ func parseArgs() {
 			printLongLicense()
 			os.Exit(0)
 		case "version", "--version":
-			fmt.Printf("Go-OpenBmclApi v%s (%s)\n", build.ClusterVersion, build.BuildVersion)
+			fmt.Printf("Go-OpenMCIM v%s (%s)\n", build.ClusterVersion, build.BuildVersion)
 			os.Exit(0)
 		case "help", "--help":
 			printHelp()
@@ -135,7 +135,7 @@ func main() {
 			log.Error(Tr("error.exit.please.read.faq"))
 			if runtime.GOOS == "windows" && !config.Advanced.DoNotOpenFAQOnWindows {
 				log.Warn(Tr("warn.exit.detected.windows.open.browser"))
-				cmd := exec.Command("cmd", "/C", "start", "https://cdn.crashmc.com/https://github.com/LiterMC/go-openbmclapi?tab=readme-ov-file#faq")
+				cmd := exec.Command("cmd", "/C", "start", "https://cdn.crashmc.com/https://github.com/WetemCloud/go-openmcim?tab=readme-ov-file#faq")
 				cmd.Start()
 				time.Sleep(time.Hour)
 			}
