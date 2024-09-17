@@ -286,9 +286,9 @@ var defaultConfig = Config{
 
 	Dashboard: DashboardConfig{
 		Enable:        true,
-		PwaName:       "GoOpenBmclApi Dashboard",
-		PwaShortName:  "GOBA Dash",
-		PwaDesc:       "Go-Openbmclapi Internal Dashboard",
+		PwaName:       "GoOpenMCIM Dashboard",
+		PwaShortName:  "GOMCIM Dash",
+		PwaDesc:       "Go-OpenMCIM Internal Dashboard",
 		NotifySubject: "mailto:user@example.com",
 	},
 
