@@ -1,22 +1,22 @@
-
-Go OpenBmclAPI
-[![License](https://img.shields.io/github/license/LiterMC/go-openbmclapi)](https://github.com/LiterMC/go-openbmclapi/blob/master/LICENSE)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/LiterMC/go-openbmclapi/build-tag.yml)](https://github.com/LiterMC/go-openbmclapi/actions)
-[![Downloads](https://img.shields.io/github/downloads/LiterMC/go-openbmclapi/total)](https://github.com/LiterMC/go-openbmclapi/releases)
-==============
-
-Golang 版的 [OpenBmclAPI](https://github.com/bangbang93/openbmclapi)
-
-> 注: 本仓库部分代码按照 <https://github.com/bangbang93/openbmclapi> 编写, **非官方, 不保证时效性**
-
+# Go OpenMCIM
+为各平台的 Mod 的缓存加速，基于 [Go OpenBmclAPI](https://github.com/LiterMC/go-openbmclapi) 修改的节点客户端
+> [!TIP]
+> 非官方, 不保证时效性
 *如果本项目有用, 就给个 star ⭐️ 吧 :)*
 
-欢迎进行 PR.
+## 部署
 
--> [完整贡献者列表](./CONTRIBUTORS.md)
+以下是基于本项目现有 OpenMCIM 节点端发布的办法
+> [!IMPORTANT]
+> 如果跑不起来请自行解决或开 issue 进行询问，不要当作 bug 发到人家仓库去
+
+1. 从 [Github Release](https://github.com/WetemCloud/go-openmcim/releases) 找到**适合您服务器平台**的程序并下载到节点服务器上
+2. 配置配置文件,从`config.yaml`进行配置 _(下文有讲)_
+3. 运行程序
 
 ## 特性
 
+- **支持 OpenMCIM 请求接入！**
 - 支持代理 BMCLAPI 请求, 并使用本地缓存加速请求
 - 使用协程/多线程, 超高的文件同步速度
 - ~~不依赖大量的三方包, 体积小巧~~
@@ -29,97 +29,7 @@ Golang 版的 [OpenBmclAPI](https://github.com/bangbang93/openbmclapi)
 - 支持一些小众的~~奇怪~~需求
 - ~~更好的压榨节点~~
 
-## FAQ
-
-Q: 如何运行 / 配置该程序?  
-A: 请查看 [`docs`](./docs) 文件夹下的文档
-
-Q: 支持`.env`文件吗?  
-A: 不支持, Go-OpenBmclAPI 使用 yaml 配置文件, 该文件应位于程序的运行目录. 初次运行本程序时会自动创建该配置文件
-
-Q: 没有适合我的平台的程序怎么办?  
-A: 检查 [Go Platform Values](https://gist.github.com/asukakenji/f15ba7e588ac42795f421b48b8aede63#platform-values), 如果您的系统/架构存在, 那么可以发个 issue
-
-Q: 版本号格式  
-A: `v<openbmclapi 版本>-<go-openbmclapi 构建计数>`, 例: `v1.6.7-60`
-
-Q: 面板在哪里访问?  
-A: 服务端启动时会输出 `https://<public-host>:<public-port>`, 访问这个地址就可以了
-   > 注: 面板与 openbmclapi 下载服务共用一个端口, 并非单独配置
-
-Q: 检查文件的时候过慢怎么办?  
-A: 如果您确定您的存储稳定, 将 `config.yaml` 下的 `no-heavy-check` 选项设为 `true` 即可
-
-Q: 程序无法运行 / 直接退出怎么办?  
-A: 请将运行目录下 `logs` 文件夹内最新的日志上传到 [Github Issue](https://github.com/LiterMC/go-openbmclapi/issues/new)
-
-Q: 面板日志一直无法连接?  
-A: 请确认中间所有的反向代理都支持 WebSocket
-
-## 安装
-
-注意: LiterMC-RootCA 的 SHA1 指纹为 `A2:CB:34:70:25:CF:5D:F6:57:1C:67:81:35:49:7D:6D:A7:26:F7:0E`
-
-### 无依赖直接运行
-
-1. 从 [Github Release](https://github.com/LiterMC/go-openbmclapi/releases/latest) 找到**适合您服务器平台**的程序并下载到节点服务器上
-2. 配置配置文件, 可以直接使用与bangbang93的openbmclapi相同的环境变量配置, 也可以从`config.yaml`进行配置 _(下文有讲)_
-3. 运行程序
-
-### 从docker运行
-
-- 可直接运行仓库目录下的 [`scripts/docker-run.sh`](./scripts/docker-run.sh) 文件, 运行之前请确保存在`craftmine/go-openbmclapi:latest`镜像, 或网络连通
-- 国内可能屏蔽了 dockerHUB, 可以尝试拉取 `mcdr.waerba.com/go-openbmclapi:latest`
-- 也可使用`docker build -t craftmine/go-openbmclapi:latest .`手动编译镜像
-
-### 从`systemd`运行 _(仅Linux)_
-
-1. **确保systemd是您的*启动进程***
-2. 执行
-   ```sh
-   curl -fsSL https://raw.githubusercontent.com/LiterMC/go-openbmclapi/HEAD/installer/service/installer.sh | sudo bash -s
-   ```
-   > 注意, 新版新增使用 `openbmclapi` 用户执行程序, 可能需要执行 `sudo chown -R openbmclapi /opt/openbmclapi` 指令修复权限
-
-   国内对 Github 的支持较差, 可以使用 ghproxy 等镜像站运行脚本, 本例中使用了 [crashmc.com](https://crashmc.com) 提供的 CDN:
-   ```sh
-   MIRROR_PREFIX=https://cdn.crashmc.com/
-   curl -fsSL ${MIRROR_PREFIX}https://raw.githubusercontent.com/LiterMC/go-openbmclapi/HEAD/installer/service/installer.sh | sudo bash -s -- --mirror "${MIRROR_PREFIX}"
-   ```
-
-   如果需要下载指定版本, 只需设置 `-t|--tag` 标志即可
-   ```sh
-   curl -fsSL https://raw.githubusercontent.com/LiterMC/go-openbmclapi/HEAD/installer/service/installer.sh | sudo bash -s -- --tag v1.9.7-8
-   ```
-3. 配置`/opt/openbmclapi/config.yaml`配置文件
-4. 使用`systemctl start go-openbmclapi.service`启动服务
-   - 使用`systemctl reload go-openbmclapi.service`可重新加载配置文件
-   - 使用`systemctl stop go-openbmclapi.service`停止服务
-   - 使用`systemctl enable go-openbmclapi.service`让服务自启动
-   - 使用`systemctl disable go-openbmclapi.service`禁止服务自启动
-   - 使用`journalctl -f --output cat -u go-openbmclapi.service`实时监听日志
-
-### 从源代码运行
-
-1. 确保您的服务器上装有 `go 1.21+` 以及 `node & npm`
-2. 下载本仓库 _(可以使用`git clone https://github.com/LiterMC/go-openbmclapi.git`)_
-3. cd 进入本仓库
-4. 配置配置文件或环境变量
-5. 使用 `go generate . && go run .` 运行本程序
-
-### 第三方自更新+无依赖直接运行脚本
-
-源代码位于 <https://github.com/8Mi-Tech/Shell/blob/main/go-openbmclapi-in-tmux.sh>
-
-```
-cd /opt/openbmclapi
-wget -O start.sh https://raw.githubusercontent.com/8Mi-Tech/Shell/main/go-openbmclapi-in-tmux.sh
-bash ./start.sh
-```
-
-## 配置
-
-### 使用配置文件
+## 配置 Config.yaml
 
 #### 注意: 配置文件指定的值会被环境变量的值 _(如果存在)_ 覆盖掉
 
@@ -184,7 +94,7 @@ cache:
   data:
     network: tcp
     addr: "redis.server.hostname.example.com:6379"
-    client-name: "go-openbmclapi"
+    client-name: "go-openmcim"
     username: redis-username
     password: redis-password
 
@@ -235,11 +145,11 @@ dashboard:
   # 登录用的密码, 留空表示禁止登录
   password: ""
   # PWA 的名称, 在桌面设备上显示
-  pwa-name: GoOpenBmclApi Dashboard
+  pwa-name: GoOpenMCIM Dashboard
   # PWA 短名称, 在移动设备上显示
-  pwa-short_name: GOBA Dash
+  pwa-short_name: GOMCIM Dash
   # PWA 描述
-  pwa-description: Go-Openbmclapi Internal Dashboard
+  pwa-description: Go-OpenMCIM Internal Dashboard
   # 签名推送 JWT 时的 subject, 请将其设为 "mailto:<您的邮箱>" 或 "https://<您的域名>"
   notification-subject: mailto:user@example.com
 
@@ -378,7 +288,7 @@ advanced:
 
 ## 子命令
 
-Go-OpenBmclAPI 提供了一组子命令:
+Go-OpenMCIM 提供了一组子命令:
 ```
 Sub commands:
   help
@@ -416,5 +326,5 @@ Sub commands:
 ```
 
 ## 致谢
-
-[OpenBMCLAPI-TypeScript](https://github.com/bangbang93/openbmclapi)（[@bangbang93](https://github.com/bangbang93)）
+Go OpenBmclAPI - https://github.com/LiterMC/go-openbmclapi
+OpenMCIM - https://github.com/mcmod-info-mirror/mcim
