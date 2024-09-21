@@ -12,7 +12,8 @@
 > [!IMPORTANT]
 > 如果跑不起来请自行解决或开 issue 进行询问，不要当作 bug 发到人家仓库去
 
-1. 从 [Github Release](https://github.com/WetemCloud/go-openmcim/releases) 找到**适合您服务器平台**的程序并下载到节点服务器上
+
+1. 如果你是普通用户，请[在这里](https://github.com/WetemCloud/go-openmcim/releases/tag/v1.10.9-stable)找到**适合您服务器平台**的程序并下载到节点服务器上。如果已经过运营方许可使用"HAZARD"分支，[请点此](https://github.com/WetemCloud/go-openmcim/releases/tag/v1.10.9-hazard-3)
 2. 配置配置文件,从`config.yaml`进行配置 _(下文有讲)_
 3. 运行程序
 
