@@ -238,6 +238,11 @@ func (cr *Cluster) checkFileFor(
 		}
 	}
 
+	if s, ok := sto.(*storage.MountStorage); ok {
+		log.Infof("We are using the HAZARD branch version of Go OpenMCIM to handle fileSync issues. Skip checking files for %s , edited by WetemCloud <master@wetem.cn>. This branch violates the storage design principles of OpenMCIM and the regular file check specifications of the original project, which may cause the OpenMCIM project to crash. If it is not in a testing environment and has not been approved by the operator, please do not use this project!\n", s)
+		return
+	}
+
 	log.Infof(Tr("info.check.start"), sto.String(), heavy)
 
 	var (
