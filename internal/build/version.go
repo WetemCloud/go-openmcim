@@ -25,7 +25,7 @@ import (
 
 const ClusterVersion = "1.10.9"
 
-var BuildVersion string = "dev"
+var BuildVersion string = "hazard"
 
-var ClusterUserAgent string = fmt.Sprintf("openbmclapi-cluster/%s", ClusterVersion)
-var ClusterUserAgentFull string = fmt.Sprintf("%s go-openbmclapi-cluster/%s", ClusterUserAgent, BuildVersion)
+var ClusterUserAgent string = fmt.Sprintf("openmcim-hazard-cluster/%s", ClusterVersion)
+var ClusterUserAgentFull string = fmt.Sprintf("%s openmcim-hazard-cluster/%s", ClusterUserAgent, BuildVersion)

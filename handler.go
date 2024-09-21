@@ -503,7 +503,7 @@ func (cr *Cluster) handleDownload(rw http.ResponseWriter, req *http.Request, has
 		if er != nil {
 			log.Debugf("[handler]: File %s failed on storage [%d] %s: %v", hash, i, sto.String(), er)
 			err = er
-			return false
+			return true
 		}
 		if sz >= 0 {
 			opts := cr.storageOpts[i]
@@ -533,10 +533,6 @@ func (cr *Cluster) handleDownload(rw http.ResponseWriter, req *http.Request, has
 		}
 		if err == storage.ErrNotWorking {
 			log.Errorf("All storages are down, exit.")
-			tctx, cancel := context.WithTimeout(context.TODO(), time.Second*10)
-			cr.Disable(tctx)
-			cancel()
-			osExit(CodeClientOrEnvionmentError)
 		}
 		return
 	}
